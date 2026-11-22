@@ -5,6 +5,7 @@ import { contactFields } from "@/lib/admin-fields";
 import AdminHeader from "@/components/admin/admin-header";
 import LoginForm from "@/components/admin/login-form";
 import CandidateField from "@/components/admin/candidate-field";
+import CandidateStatusChip from "@/components/admin/candidate-status";
 import DeleteCandidate from "@/components/admin/delete-candidate";
 
 function pageHref(page: number, search: string) {
@@ -64,6 +65,9 @@ export default async function AdminPage({ searchParams }: {
             <ul className="admin-candidates">
               {candidates.map((candidate) => (
                 <li className="raised-card admin-candidate-card" key={candidate.id}>
+                  <div className="admin-card-status">
+                    <CandidateStatusChip status={candidate.status} />
+                  </div>
                   <div className="admin-fields">
                     {contactFields.map((field) => (
                       <CandidateField key={field} candidateId={candidate.id} field={field} value={candidate[field]} />

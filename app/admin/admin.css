@@ -75,6 +75,7 @@
   background: var(--paper);
 }
 .admin-candidate-card { display: flex; flex-direction: column; }
+.admin-card-status { align-self: flex-end; margin-bottom: .5rem; }
 .admin-card-footer {
   display: flex;
   justify-content: space-between;
@@ -93,13 +94,27 @@
 .admin-field-label {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   gap: .75rem;
   color: var(--muted);
   font-size: .875rem;
   font-weight: 750;
 }
 .admin-field-label label { overflow-wrap: anywhere; }
+.admin-edit-button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  inline-size: 2rem;
+  block-size: 2rem;
+  padding: 0;
+  border: 1px solid var(--carbon);
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--carbon);
+  cursor: pointer;
+}
+.admin-edit-button:hover { background: var(--mustard); }
 .admin-field-value {
   margin-top: .25rem;
   white-space: pre-wrap;
@@ -108,13 +123,19 @@
 .admin-field:has(.admin-status) { align-content: start; }
 .admin-status {
   display: inline-block;
-  margin-top: .3rem;
-  padding: .2rem .65rem;
-  border: 1px solid var(--carbon);
+  padding: .3rem .85rem;
+  border: 1.5px solid var(--carbon);
   border-radius: 2rem;
   background: var(--mustard);
-  font-weight: 750;
+  color: var(--carbon);
+  box-shadow: .15rem .15rem 0 var(--carbon);
+  font-size: .875rem;
+  font-weight: 800;
 }
+.admin-field > .admin-status { margin-top: .35rem; }
+.admin-status[data-status="reviewed"] { background: #dbe6fa; color: #233b65; }
+.admin-status[data-status="accepted"] { background: #d3ebce; color: #244524; }
+.admin-status[data-status="rejected"] { background: #f7d9d0; color: #7b2d22; }
 .admin-link, .admin-text-button {
   color: var(--carbon);
   font-weight: 750;

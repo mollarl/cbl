@@ -3,6 +3,7 @@
 import { useActionState, useEffect, useId, useState } from "react";
 import { editField } from "@/app/admin/actions";
 import { adminFields, candidateStatuses, type AdminField, type CandidateStatus, type CandidateValue } from "@/lib/admin-fields";
+import CandidateStatusChip from "./candidate-status";
 
 export default function CandidateField({ candidateId, field, value }: {
   candidateId: string;
@@ -26,7 +27,6 @@ export default function CandidateField({ candidateId, field, value }: {
 
   function displayValue() {
     if (kind === "consent") return value === true ? "Sí" : "No";
-    if (kind === "status") return candidateStatuses[value as CandidateStatus] ?? String(value ?? "—");
     return value || "Sin respuesta";
   }
 
@@ -35,7 +35,14 @@ export default function CandidateField({ candidateId, field, value }: {
       <div className="admin-field-label">
         <label htmlFor={editing ? inputId : undefined}>{label}</label>
         {!editing && (
-          <button className="admin-text-button" type="button" onClick={startEditing} aria-label={`Editar ${label}`}>Editar</button>
+          <button
+            className="admin-edit-button" type="button" onClick={startEditing}
+            aria-label={`Editar ${label}`} title={`Editar ${label}`}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+              <path d="m16 4 4 4M4 20l5-1L20 8a2.8 2.8 0 0 0-4-4L5 15z" />
+            </svg>
+          </button>
         )}
       </div>
       {editing ? (
@@ -62,7 +69,9 @@ export default function CandidateField({ candidateId, field, value }: {
             <button className="admin-text-button" type="button" disabled={pending} onClick={() => setEditing(false)}>Cancelar</button>
           </div>
         </form>
-      ) : <p className={kind === "status" ? "admin-status" : "admin-field-value"}>{displayValue()}</p>}
+      ) : kind === "status" ? (
+        <CandidateStatusChip status={value as CandidateStatus} />
+      ) : <p className="admin-field-value">{displayValue()}</p>}
     </div>
   );
 }
