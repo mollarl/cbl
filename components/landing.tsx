@@ -170,9 +170,11 @@ export default function Landing() {
         </section>
 
         <section className="chapter people-section" id="somos" aria-labelledby="people-title">
-          <div className="container">
-            <p className="eyebrow">La comunidad</p>
-            <h2 id="people-title">¿Quiénes somos?</h2>
+          <div className="container people-layout">
+            <div className="people-heading">
+              <p className="eyebrow">La comunidad</p>
+              <h2 id="people-title">¿Quiénes somos?</h2>
+            </div>
             <div className="people-grid">
               {founders.map(({ name, photo, linkedin, bio, facts }, index) => (
                 <article className="raised-card person-card" data-enter={index === 0 ? "left" : "right"} key={name}>

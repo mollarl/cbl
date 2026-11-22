@@ -22,6 +22,20 @@ Las consultas de referencia están en `db/queries.sql`. El flujo está dividido 
 
 Si la tabla se creó con una versión anterior de la migración inicial, ejecutar también `db/002_optional_linkedin.sql` para permitir postulaciones sin LinkedIn.
 
+## Panel de postulaciones
+
+El panel está en `/admin` y utiliza la base configurada en `DATABASE_URL`. Ejecutar `db/003_admin.sql` en la misma base. La migración habilita `mariapia.delafuente@gmail.com` con la contraseña sin definir.
+
+Para habilitar un primer ingreso, ejecutar en una terminal con `DATABASE_URL` configurada:
+
+```bash
+npm run admin:invite -- mariapia.delafuente@gmail.com
+```
+
+Compartir el código por un canal privado. Tiene una vigencia de 48 horas. En `/admin`, elegir «Tengo un código de activación» e ingresar el correo, el código y la contraseña elegida. A partir de ahí, se ingresa con correo y contraseña.
+
+El mismo comando agrega otros correos directamente en `admin_users` y genera su invitación. Una cuenta pendiente también se puede crear con `INSERT INTO admin_users (email) VALUES ('correo@example.com');` y luego generar el código con el comando. Para deshabilitar una cuenta, poner `enabled = false` en su fila.
+
 ## FALTA DEFINIR
 
 - Dato random, guilty pleasure y fuera del trabajo de Fer.

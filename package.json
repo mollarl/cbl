@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "admin:invite": "node scripts/admin-invite.mjs",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,6 +14,9 @@
     "next": "^15.5.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
+  },
+  "overrides": {
+    "postcss": "^8.5.23"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
